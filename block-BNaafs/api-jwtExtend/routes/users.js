@@ -2,6 +2,7 @@ const { use } = require('bcrypt/promises');
 var express = require('express');
 var router = express.Router();
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
