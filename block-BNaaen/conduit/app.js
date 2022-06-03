@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+require('dotenv').config();
 
 // connect to the mongooose server
 mongoose.connect('mongodb://localhost/conduitApp', (err) => {
@@ -12,6 +13,10 @@ mongoose.connect('mongodb://localhost/conduitApp', (err) => {
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var articleRouter = require('./routes/articles');
+var tagsRouter = require('./routes/tags');
+var userRouter = require('./routes/user');
+var profileRouter = require('./routes/profiles');
 
 var app = express();
 
@@ -27,6 +32,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/articles', articleRouter);
+app.use('/api/user', userRouter);
+app.use('/api/tags', tagsRouter);
+app.use('/api/profiles', profileRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
